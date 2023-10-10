@@ -11,11 +11,12 @@ int total_sentences = 0;
 
 word [^ \t\n.]+
 minus [a-z]+
-mayus [A-Z][a-zA-Z]+
-numeric [0-9][0-9]+
+mayus [A-Z]+
+numeric [0-9]+
+sentence \.
 
 %%
-\.  { total_sentences++; }
+{sentence}  { total_sentences++; }
 {mayus}     { total_chars += yyleng; uppercase_words++; }
 {minus}     { total_chars += yyleng; lowercase_words++; }
 {numeric}   { total_chars += yyleng; numeric_words++; }

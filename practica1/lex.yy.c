@@ -362,7 +362,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[15] =
     {   0,
-        0,    0,    7,    5,    6,    1,    5,    5,    3,    5,
+        0,    0,    7,    5,    6,    1,    4,    2,    3,    5,
         4,    2,    3,    0
     } ;
 
@@ -405,8 +405,8 @@ static const YY_CHAR yy_meta[7] =
 
 static const flex_int16_t yy_base[16] =
     {   0,
-        0,    0,   12,    0,   13,   13,    7,    2,    4,    0,
-        0,    0,    0,   13,    8
+        0,    0,   11,    0,   12,   12,    6,    4,    2,    0,
+        0,    0,    0,   12,    6
     } ;
 
 static const flex_int16_t yy_def[16] =
@@ -415,16 +415,16 @@ static const flex_int16_t yy_def[16] =
         7,    8,    9,    0,   14
     } ;
 
-static const flex_int16_t yy_nxt[20] =
+static const flex_int16_t yy_nxt[19] =
     {   0,
-        4,    5,    6,    7,    8,    9,   12,   12,   10,   13,
-       11,   14,    3,   14,   14,   14,   14,   14,   14
+        4,    5,    6,    7,    8,    9,   10,   13,   12,   11,
+       14,    3,   14,   14,   14,   14,   14,   14
     } ;
 
-static const flex_int16_t yy_chk[20] =
+static const flex_int16_t yy_chk[19] =
     {   0,
-        1,    1,    1,    1,    1,    1,    8,    8,   15,    9,
-        7,    3,   14,   14,   14,   14,   14,   14,   14
+        1,    1,    1,    1,    1,    1,   15,    9,    8,    7,
+        3,   14,   14,   14,   14,   14,   14,   14
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -704,7 +704,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 13 );
+		while ( yy_base[yy_current_state] != 12 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
