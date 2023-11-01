@@ -1,21 +1,18 @@
 %{
+#include <stdlib.h>
 #include "practica2.tab.h"
 %}
 
-string [A-Z | 0-9 | a-z]+
-
-
-%%
-
-"<\\?xml" { return XML; }
-"version=\"1.0\"" { return VERSION; }
-"encoding=\"UTF-8\"\\?>" { return ENCODING; }
-"<"{string}">" { return OPEN_TAG; }
-"</"{string}">" { return CLOSE_TAG; }
-.|\n { }
+identificador   [A-Za-zÁÉÍÓÚáéíóú0-9]+
+contenido       ([A-Za-zÁÉÍÓÚáéíóú0-9]+|[-\/\!\?¿¡\(\)''#\"\$\%\*\-\.,:=])*
 
 %%
 
-int yywrap() {
-    return 1;
-}
+[ \n]                             {}                          
+"<!--"[^-]*"-->"                { yylval.string=strdup(yytext); return COMMENT;}
+"<?"({contenido}|\=|.|-)*"?>"   { yylval.string=strdup(yytext); return DECLARATION;}
+"<"{identificador}">"          {  yylval.string=strdup(yytext); return OPEN_TAG;}
+"</"{identificador}">"         { yylval.string=strdup(yytext); return CLOSE_TAG;}
+{contenido}                    { yylval.string=strdup(yytext); return CONTENT;}
+
+%%

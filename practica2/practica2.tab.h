@@ -54,11 +54,11 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    XML = 258,                     /* XML  */
-    VERSION = 259,                 /* VERSION  */
-    ENCODING = 260,                /* ENCODING  */
-    OPEN_TAG = 261,                /* OPEN_TAG  */
-    CLOSE_TAG = 262                /* CLOSE_TAG  */
+    OPEN_TAG = 258,                /* OPEN_TAG  */
+    CLOSE_TAG = 259,               /* CLOSE_TAG  */
+    COMMENT = 260,                 /* COMMENT  */
+    DECLARATION = 261,             /* DECLARATION  */
+    CONTENT = 262                  /* CONTENT  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -67,15 +67,24 @@ extern int yydebug;
 #define YYEOF 0
 #define YYerror 256
 #define YYUNDEF 257
-#define XML 258
-#define VERSION 259
-#define ENCODING 260
-#define OPEN_TAG 261
-#define CLOSE_TAG 262
+#define OPEN_TAG 258
+#define CLOSE_TAG 259
+#define COMMENT 260
+#define DECLARATION 261
+#define CONTENT 262
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 13 "practica2.y"
+
+    char* str;
+
+#line 85 "practica2.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

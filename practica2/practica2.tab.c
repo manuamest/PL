@@ -70,12 +70,14 @@
 #line 1 "practica2.y"
 
 #include <stdio.h>
-extern int yylex();
-extern int yyparse();
-extern FILE* yyin;
-void yyerror(const char* s);
+#include <stdlib.h>
+#include <string.h>
 
-#line 79 "practica2.tab.c"
+int yylex();
+void yyerror(const char* s);
+int lines = 0;
+
+#line 81 "practica2.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -106,15 +108,16 @@ enum yysymbol_kind_t
   YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
   YYSYMBOL_YYerror = 1,                    /* error  */
   YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-  YYSYMBOL_XML = 3,                        /* XML  */
-  YYSYMBOL_VERSION = 4,                    /* VERSION  */
-  YYSYMBOL_ENCODING = 5,                   /* ENCODING  */
-  YYSYMBOL_OPEN_TAG = 6,                   /* OPEN_TAG  */
-  YYSYMBOL_CLOSE_TAG = 7,                  /* CLOSE_TAG  */
+  YYSYMBOL_OPEN_TAG = 3,                   /* OPEN_TAG  */
+  YYSYMBOL_CLOSE_TAG = 4,                  /* CLOSE_TAG  */
+  YYSYMBOL_COMMENT = 5,                    /* COMMENT  */
+  YYSYMBOL_DECLARATION = 6,                /* DECLARATION  */
+  YYSYMBOL_CONTENT = 7,                    /* CONTENT  */
   YYSYMBOL_YYACCEPT = 8,                   /* $accept  */
   YYSYMBOL_start = 9,                      /* start  */
-  YYSYMBOL_element_list = 10,              /* element_list  */
-  YYSYMBOL_element = 11                    /* element  */
+  YYSYMBOL_tags = 10,                      /* tags  */
+  YYSYMBOL_content = 11,                   /* content  */
+  YYSYMBOL_data = 12                       /* data  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -440,18 +443,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  4
+#define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   10
+#define YYLAST   26
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  4
+#define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  5
+#define YYNRULES  16
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  11
+#define YYNSTATES  24
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   262
@@ -501,7 +504,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    13,    13,    16,    17,    20
+       0,    20,    20,    21,    22,    23,    26,    34,    43,    49,
+      56,    57,    58,    66,    76,    77,    78
 };
 #endif
 
@@ -517,9 +521,9 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "XML", "VERSION",
-  "ENCODING", "OPEN_TAG", "CLOSE_TAG", "$accept", "start", "element_list",
-  "element", YY_NULLPTR
+  "\"end of file\"", "error", "\"invalid token\"", "OPEN_TAG",
+  "CLOSE_TAG", "COMMENT", "DECLARATION", "CONTENT", "$accept", "start",
+  "tags", "content", "data", YY_NULLPTR
 };
 
 static const char *
@@ -529,7 +533,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-5)
+#define YYPACT_NINF (-8)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -543,8 +547,9 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,    -2,     1,    -1,    -5,     0,    -4,    -5,     0,    -5,
-      -5
+      -5,     7,    16,    -1,    15,    14,    -8,     4,    17,    -8,
+      -8,    18,    10,    19,    -8,    -8,    21,    -8,    20,    -8,
+      -8,    10,    -8,    -8
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -552,20 +557,21 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     0,     0,     0,     1,     4,     0,     2,     4,     5,
-       3
+       0,     0,     0,     0,     0,     5,     1,     0,     7,    16,
+      15,     0,    10,     2,     4,    14,     0,     8,     6,    11,
+       3,    12,     9,    13
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -5,    -5,     2,    -5
+      -8,    -8,    22,    -7,    -8
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     2,     7,     8
+       0,     2,     5,    11,    12
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -573,34 +579,39 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,     4,     3,     9,     5,     0,     6,     0,     0,     0,
-      10
+      16,     1,     7,     8,     9,    19,    10,     7,    15,     9,
+       3,    10,     4,     7,    23,     9,     6,    10,     3,    14,
+      17,     0,    18,    22,    20,    21,    13
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     0,     4,     7,     5,    -1,     6,    -1,    -1,    -1,
-       8
+       7,     6,     3,     4,     5,    12,     7,     3,     4,     5,
+       3,     7,     5,     3,    21,     5,     0,     7,     3,     5,
+       3,    -1,     4,     3,     5,     4,     4
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     9,     4,     0,     5,     6,    10,    11,     7,
-      10
+       0,     6,     9,     3,     5,    10,     0,     3,     4,     5,
+       7,    11,    12,    10,     5,     4,    11,     3,     4,    11,
+       5,     4,     3,    11
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,     8,     9,    10,    10,    11
+       0,     8,     9,     9,     9,     9,    10,    10,    10,    10,
+      11,    11,    11,    11,    12,    12,    12
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     4,     2,     0,     2
+       0,     2,     3,     4,     3,     2,     3,     2,     3,     4,
+       1,     2,     3,     4,     2,     1,     1
 };
 
 
@@ -1063,8 +1074,118 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2: /* start: DECLARATION COMMENT tags  */
+#line 20 "practica2.y"
+                               {printf("Sintaxis XML correcta.\n");}
+#line 1081 "practica2.tab.c"
+    break;
 
-#line 1068 "practica2.tab.c"
+  case 3: /* start: DECLARATION COMMENT tags COMMENT  */
+#line 21 "practica2.y"
+                                           {printf("Sintaxis XML correcta.\n");}
+#line 1087 "practica2.tab.c"
+    break;
+
+  case 4: /* start: DECLARATION tags COMMENT  */
+#line 22 "practica2.y"
+                                   {printf("Sintaxis XML correcta.\n");}
+#line 1093 "practica2.tab.c"
+    break;
+
+  case 5: /* start: DECLARATION tags  */
+#line 23 "practica2.y"
+                           {printf("Sintaxis XML correcta.\n");}
+#line 1099 "practica2.tab.c"
+    break;
+
+  case 6: /* tags: OPEN_TAG content CLOSE_TAG  */
+#line 26 "practica2.y"
+                                    {
+		
+		if (strcmp((yyvsp[-2].string)+1, (yyvsp[0].string)+2) != 0){
+	printf("Error en línea %d: Encontrado: '%s' y se esperaba '%s'.\n", lines, (yyvsp[0].string), (yyvsp[-2].string));
+		
+			exit(2);
+		}
+	}
+#line 1112 "practica2.tab.c"
+    break;
+
+  case 7: /* tags: OPEN_TAG CLOSE_TAG  */
+#line 34 "practica2.y"
+                             {
+	
+	if (strcmp((yyvsp[-1].string)+1, (yyvsp[0].string)+2) != 0){
+	
+	printf("Error en línea %d: Encontrado: '%s' y se esperaba '%s'.\n", lines, (yyvsp[0].string), (yyvsp[-1].string));
+		
+	exit(2);
+		}
+	}
+#line 1126 "practica2.tab.c"
+    break;
+
+  case 8: /* tags: OPEN_TAG CLOSE_TAG OPEN_TAG  */
+#line 43 "practica2.y"
+                                      {
+		
+		
+		printf("Error en línea %d: No existe el tag raíz.\n",  lines);
+		exit(2);
+	}
+#line 1137 "practica2.tab.c"
+    break;
+
+  case 9: /* tags: OPEN_TAG content CLOSE_TAG OPEN_TAG  */
+#line 49 "practica2.y"
+                                              {
+		
+		printf("Error en línea %d: No existe el tag raíz.\n",  lines);
+		exit(2);
+	}
+#line 1147 "practica2.tab.c"
+    break;
+
+  case 12: /* content: OPEN_TAG content CLOSE_TAG  */
+#line 58 "practica2.y"
+                                     {
+		
+		if (strcmp((yyvsp[-2].string)+1, (yyvsp[0].string)+2) != 0){
+	printf("Error en línea %d: Encontrado: '%s' y se esperaba '%s'.\n", lines, (yyvsp[0].string), (yyvsp[-2].string));
+		
+		exit(2);
+		}
+	}
+#line 1160 "practica2.tab.c"
+    break;
+
+  case 13: /* content: OPEN_TAG content CLOSE_TAG content  */
+#line 66 "practica2.y"
+                                             {
+		
+			if (strcmp((yyvsp[-3].string)+1, (yyvsp[-1].string)+2) != 0){
+	printf("Error en línea %d: Encontrado: '%s' y se esperaba '%s'.\n", lines, (yyvsp[-1].string), (yyvsp[-3].string));
+		
+			exit(2);
+		}
+	}
+#line 1173 "practica2.tab.c"
+    break;
+
+  case 15: /* data: CONTENT  */
+#line 77 "practica2.y"
+                  {lines++;}
+#line 1179 "practica2.tab.c"
+    break;
+
+  case 16: /* data: COMMENT  */
+#line 78 "practica2.y"
+                 {lines++;}
+#line 1185 "practica2.tab.c"
+    break;
+
+
+#line 1189 "practica2.tab.c"
 
       default: break;
     }
@@ -1257,25 +1378,12 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 23 "practica2.y"
+#line 81 "practica2.y"
 
 
-void yyerror(const char* s) {
-   printf("Error: %s\n", s);
-}
+int main(int argc, char *argv[]) {
 
-int main(void) {
-   FILE* inputFile = fopen("practica2_ejemplo1.xml", "r");
-   if (!inputFile) {
-      printf("Error opening file\n");
-      return -1;
-   }
+    yyparse();
 
-   yyin = inputFile;
-
-   do {
-      yyparse();
-   } while (!feof(yyin));
-
-   return 0;
+    return 0;
 }
