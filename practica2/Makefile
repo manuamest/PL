@@ -2,7 +2,7 @@
 # FUENTE: nombre fichero fuente con extension .l
 FUENTE = practica2
 # PRUEBA: nombre fichero de prueba
-PRUEBA = practica2_ejemplo2.xml
+PRUEBA = practica2_ejemplo1.xml
 # LIB (libreria flex): lfl (gnu/linux, windows); ll (macos)
 LIB = lfl
 

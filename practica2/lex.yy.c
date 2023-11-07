@@ -370,8 +370,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 8
-#define YY_END_OF_BUFFER 9
+#define YY_NUM_RULES 7
+#define YY_END_OF_BUFFER 8
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -379,12 +379,12 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[36] =
+static const flex_int16_t yy_accept[35] =
     {   0,
-        7,    7,    9,    8,    1,    2,    7,    7,    8,    7,
-        1,    7,    7,    7,    0,    0,    0,    0,    0,    0,
-        5,    0,    0,    0,    0,    0,    0,    0,    6,    4,
-        0,    0,    0,    3,    0
+        6,    6,    8,    7,    1,    6,    6,    7,    6,    1,
+        6,    6,    6,    0,    0,    0,    0,    0,    0,    4,
+        0,    0,    0,    0,    0,    0,    0,    5,    3,    0,
+        0,    0,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -421,52 +421,54 @@ static const YY_CHAR yy_ec[256] =
 
 static const YY_CHAR yy_meta[14] =
     {   0,
-        1,    1,    1,    2,    2,    2,    2,    3,    1,    2,
-        4,    2,    3
+        1,    2,    2,    3,    3,    3,    3,    4,    1,    3,
+        5,    3,    4
     } ;
 
 static const flex_int16_t yy_base[40] =
     {   0,
-        0,    0,   33,   57,   30,   57,    6,   12,   22,    0,
-       29,    0,    0,    0,   22,    0,   16,   35,   18,   12,
-       57,    0,    0,    0,    0,   11,    0,   15,   57,    0,
-       12,   11,    5,   57,   57,   47,   12,   48,   52
+        0,    0,   32,   58,    0,    6,   12,   22,    0,    0,
+        0,    0,    0,   25,    0,   17,   35,   21,   13,   58,
+        0,    0,    0,    0,   12,    0,   16,   58,    0,   15,
+       12,    6,   58,   58,   14,   46,   11,   47,   52
     } ;
 
 static const flex_int16_t yy_def[40] =
     {   0,
-       35,    1,   35,   35,   35,   35,   36,   36,   35,    8,
-       35,    8,    8,    8,   35,   37,   38,   35,   35,   37,
-       35,   18,   18,   18,   18,   18,   18,   39,   35,   18,
-       39,   35,   35,   35,    0,   35,   35,   35,   35
+       34,    1,   34,   34,   35,   36,   36,   34,    7,   35,
+        7,    7,    7,   34,   37,   38,   34,   34,   37,   34,
+       17,   17,   17,   17,   17,   17,   39,   34,   17,   39,
+       34,   34,   34,    0,   34,   34,   34,   34,   34
     } ;
 
-static const flex_int16_t yy_nxt[71] =
+static const flex_int16_t yy_nxt[72] =
     {   0,
-        4,    5,    6,    7,    7,    7,    7,    8,    9,    7,
-        4,    7,   10,   13,   20,   34,   33,   32,   14,   13,
-       32,   30,   29,   28,   14,   15,   21,   19,   16,   17,
-       11,   11,   35,   18,   17,   22,   22,   35,   23,   23,
-       24,   23,   25,   22,   24,   22,   26,   27,   12,   12,
-       17,   17,   31,   31,   31,   31,    3,   35,   35,   35,
-       35,   35,   35,   35,   35,   35,   35,   35,   35,   35
+        4,    5,    5,    6,    6,    6,    6,    7,    8,    6,
+        4,    6,    9,   12,   19,   10,   33,   32,   13,   12,
+       31,   31,   29,   28,   13,   14,   27,   20,   15,   16,
+       18,   34,   34,   17,   16,   21,   21,   34,   22,   22,
+       23,   22,   24,   21,   23,   21,   25,   26,   11,   11,
+       16,   16,   30,   30,   30,   30,   30,    3,   34,   34,
+       34,   34,   34,   34,   34,   34,   34,   34,   34,   34,
+       34
     } ;
 
-static const flex_int16_t yy_chk[71] =
+static const flex_int16_t yy_chk[72] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    7,   37,   33,   32,   31,    7,    8,
-       28,   26,   20,   19,    8,    9,   17,   15,    9,    9,
-       11,    5,    3,    9,    9,   18,   18,    0,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   36,   36,
-       38,   38,   39,   39,   39,   39,   35,   35,   35,   35,
-       35,   35,   35,   35,   35,   35,   35,   35,   35,   35
+        1,    1,    1,    6,   37,   35,   32,   31,    6,    7,
+       30,   27,   25,   19,    7,    8,   18,   16,    8,    8,
+       14,    3,    0,    8,    8,   17,   17,    0,   17,   17,
+       17,   17,   17,   17,   17,   17,   17,   17,   36,   36,
+       38,   38,   39,   39,   39,   39,   39,   34,   34,   34,
+       34,   34,   34,   34,   34,   34,   34,   34,   34,   34,
+       34
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static const flex_int32_t yy_rule_can_match_eol[9] =
+static const flex_int32_t yy_rule_can_match_eol[8] =
     {   0,
-0, 1, 1, 0, 0, 0, 0, 0,     };
+1, 1, 0, 0, 0, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -486,9 +488,8 @@ char *yytext;
 #line 2 "practica2.l"
 #include <stdlib.h>
 #include "practica2.tab.h"
-int lines = 1;
-#line 491 "lex.yy.c"
 #line 492 "lex.yy.c"
+#line 493 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -705,9 +706,9 @@ YY_DECL
 		}
 
 	{
-#line 12 "practica2.l"
+#line 11 "practica2.l"
 
-#line 711 "lex.yy.c"
+#line 712 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -734,13 +735,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 36 )
+				if ( yy_current_state >= 35 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 57 );
+		while ( yy_base[yy_current_state] != 58 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -775,48 +776,43 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
+/* rule 1 can match eol */
 YY_RULE_SETUP
-#line 13 "practica2.l"
-{}
+#line 12 "practica2.l"
+{}                     
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 14 "practica2.l"
-{ lines++;}                          
+#line 13 "practica2.l"
+{ yylval.string=strdup(yytext); return COMMENT;}
 	YY_BREAK
 case 3:
-/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 15 "practica2.l"
-{ yylval.string=strdup(yytext); return COMMENT;}
+#line 14 "practica2.l"
+{ yylval.string=strdup(yytext); return DECLARATION;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 16 "practica2.l"
-{ yylval.string=strdup(yytext); return DECLARATION;}
+#line 15 "practica2.l"
+{  yylval.string=strdup(yytext); return OPEN_TAG;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 17 "practica2.l"
-{  yylval.string=strdup(yytext); return OPEN_TAG;}
+#line 16 "practica2.l"
+{ yylval.string=strdup(yytext); return CLOSE_TAG;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 18 "practica2.l"
-{ yylval.string=strdup(yytext); return CLOSE_TAG;}
+#line 17 "practica2.l"
+{ yylval.string=strdup(yytext); return CONTENT;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 19 "practica2.l"
-{ yylval.string=strdup(yytext); return CONTENT;}
-	YY_BREAK
-case 8:
-YY_RULE_SETUP
-#line 21 "practica2.l"
 ECHO;
 	YY_BREAK
-#line 820 "lex.yy.c"
+#line 816 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1113,7 +1109,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 36 )
+			if ( yy_current_state >= 35 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1141,11 +1137,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 36 )
+		if ( yy_current_state >= 35 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 35);
+	yy_is_jam = (yy_current_state == 34);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1833,6 +1829,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 21 "practica2.l"
+#line 19 "practica2.l"
 
 
