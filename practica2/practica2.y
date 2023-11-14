@@ -19,6 +19,10 @@ extern int yylineno;
 
 start:
 	  DECLARATION comment OPEN_TAG content CLOSE_TAG comment {
+		if (strcmp($3+1, $5+2) != 0){
+	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", --yylineno, $5, $3+1);
+		    exit(1);
+		}
 		printf("\nSintaxis XML correcta.\n");}
     | error {
         printf("\nSintaxis XML incorrecta. Falta la cabecera.\n");

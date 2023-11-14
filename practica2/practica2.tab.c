@@ -505,8 +505,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    21,    21,    23,    28,    29,    32,    33,    34,    40,
-      48,    49,    50
+       0,    21,    21,    27,    32,    33,    36,    37,    38,    44,
+      52,    53,    54
 };
 #endif
 
@@ -1080,42 +1080,46 @@ yyreduce:
   case 2: /* start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment  */
 #line 21 "practica2.y"
                                                                  {
+		if (strcmp((yyvsp[-3].string)+1, (yyvsp[-1].string)+2) != 0){
+	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", --yylineno, (yyvsp[-1].string), (yyvsp[-3].string)+1);
+		    exit(1);
+		}
 		printf("\nSintaxis XML correcta.\n");}
-#line 1085 "practica2.tab.c"
+#line 1089 "practica2.tab.c"
     break;
 
   case 3: /* start: error  */
-#line 23 "practica2.y"
+#line 27 "practica2.y"
             {
         printf("\nSintaxis XML incorrecta. Falta la cabecera.\n");
         exit(1);}
-#line 1093 "practica2.tab.c"
+#line 1097 "practica2.tab.c"
     break;
 
   case 8: /* content: OPEN_TAG content CLOSE_TAG  */
-#line 34 "practica2.y"
+#line 38 "practica2.y"
                                      {
 		if (strcmp((yyvsp[-2].string)+1, (yyvsp[0].string)+2) != 0){
 	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", yylineno, (yyvsp[0].string), (yyvsp[-2].string)+1);
 		    exit(1);
 		}
 	}
-#line 1104 "practica2.tab.c"
+#line 1108 "practica2.tab.c"
     break;
 
   case 9: /* content: content OPEN_TAG content CLOSE_TAG  */
-#line 40 "practica2.y"
+#line 44 "practica2.y"
                                              {
 		if (strcmp((yyvsp[-2].string)+1, (yyvsp[0].string)+2) != 0){
 	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", yylineno, (yyvsp[0].string), (yyvsp[-2].string)+1);
 			exit(1);
 		}
 	}
-#line 1115 "practica2.tab.c"
+#line 1119 "practica2.tab.c"
     break;
 
 
-#line 1119 "practica2.tab.c"
+#line 1123 "practica2.tab.c"
 
       default: break;
     }
@@ -1308,7 +1312,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 53 "practica2.y"
+#line 57 "practica2.y"
 
 
 int main(int argc, char *argv[]) {
