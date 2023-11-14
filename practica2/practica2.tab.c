@@ -446,16 +446,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   32
+#define YYLAST   34
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  12
+#define YYNRULES  13
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  22
+#define YYNSTATES  24
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   262
@@ -505,8 +505,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    21,    21,    27,    32,    33,    36,    37,    38,    44,
-      52,    53,    54
+       0,    21,    21,    28,    31,    36,    37,    40,    41,    42,
+      48,    56,    57,    58
 };
 #endif
 
@@ -548,9 +548,9 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-       0,   -12,    -1,     5,   -12,     4,   -12,    25,     7,   -12,
-     -12,    12,   -12,   -12,    17,     7,    -1,   -12,   -12,    22,
-     -12,   -12
+       0,   -12,     8,     5,   -12,    15,   -12,    25,     7,   -12,
+     -12,    12,   -12,   -12,    17,     7,     8,   -12,   -12,    22,
+       4,   -12,   -12,   -12
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -558,15 +558,15 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     3,     4,     0,     5,     0,     1,     0,     0,    12,
-      11,     0,     6,    10,     0,     0,     4,     7,     8,     0,
-       2,     9
+       0,     4,     5,     0,     6,     0,     1,     0,     0,    13,
+      12,     0,     7,    11,     0,     0,     5,     8,     9,     0,
+       0,    10,     2,     3
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -12,   -12,    -3,    -6,   -11
+     -12,   -12,    18,    -6,   -11
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -580,18 +580,18 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      17,     1,    14,    17,     4,     6,     2,     7,    17,    19,
-       8,    13,     9,    20,    10,    15,    16,     9,     0,    10,
+      17,     1,    14,    17,    22,     6,     2,    23,    17,    19,
+       8,    13,     9,     4,    10,    15,    16,     9,     7,    10,
       15,    18,     9,     0,    10,    15,    21,     9,     8,    10,
-       9,     0,    10
+       9,     0,    10,     0,    20
 };
 
 static const yytype_int8 yycheck[] =
 {
-      11,     1,     8,    14,     5,     0,     6,     3,    19,    15,
-       3,     4,     5,    16,     7,     3,     4,     5,    -1,     7,
+      11,     1,     8,    14,     0,     0,     6,     3,    19,    15,
+       3,     4,     5,     5,     7,     3,     4,     5,     3,     7,
        3,     4,     5,    -1,     7,     3,     4,     5,     3,     7,
-       5,    -1,     7
+       5,    -1,     7,    -1,    16
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -600,21 +600,21 @@ static const yytype_int8 yystos[] =
 {
        0,     1,     6,     9,     5,    10,     0,     3,     3,     5,
        7,    11,    12,     4,    11,     3,     4,    12,     4,    11,
-      10,     4
+      10,     4,     0,     3
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,     8,     9,     9,    10,    10,    11,    11,    11,    11,
-      12,    12,    12
+       0,     8,     9,     9,     9,    10,    10,    11,    11,    11,
+      11,    12,    12,    12
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     6,     1,     0,     1,     1,     2,     3,     4,
-       2,     1,     1
+       0,     2,     7,     7,     1,     0,     1,     1,     2,     3,
+       4,     2,     1,     1
 };
 
 
@@ -1077,49 +1077,58 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment  */
+  case 2: /* start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment $end  */
 #line 21 "practica2.y"
-                                                                 {
-		if (strcmp((yyvsp[-3].string)+1, (yyvsp[-1].string)+2) != 0){
-	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", --yylineno, (yyvsp[-1].string), (yyvsp[-3].string)+1);
+                                                                       {
+		if (strcmp((yyvsp[-4].string)+1, (yyvsp[-2].string)+2) != 0){
+	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", --yylineno, (yyvsp[-2].string), (yyvsp[-4].string)+1);
 		    exit(1);
 		}
-		printf("\nSintaxis XML correcta.\n");}
-#line 1089 "practica2.tab.c"
+		printf("\nSintaxis XML correcta.\n");
+		return 0;}
+#line 1090 "practica2.tab.c"
     break;
 
-  case 3: /* start: error  */
-#line 27 "practica2.y"
+  case 3: /* start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment OPEN_TAG  */
+#line 28 "practica2.y"
+                                                                          {
+		printf("\nSintaxis XML incorrecta. Falta el tag raiz.\n");
+		exit(3);}
+#line 1098 "practica2.tab.c"
+    break;
+
+  case 4: /* start: error  */
+#line 31 "practica2.y"
             {
         printf("\nSintaxis XML incorrecta. Falta la cabecera.\n");
-        exit(1);}
-#line 1097 "practica2.tab.c"
+        exit(3);}
+#line 1106 "practica2.tab.c"
     break;
 
-  case 8: /* content: OPEN_TAG content CLOSE_TAG  */
-#line 38 "practica2.y"
+  case 9: /* content: OPEN_TAG content CLOSE_TAG  */
+#line 42 "practica2.y"
                                      {
 		if (strcmp((yyvsp[-2].string)+1, (yyvsp[0].string)+2) != 0){
 	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", yylineno, (yyvsp[0].string), (yyvsp[-2].string)+1);
 		    exit(1);
 		}
 	}
-#line 1108 "practica2.tab.c"
+#line 1117 "practica2.tab.c"
     break;
 
-  case 9: /* content: content OPEN_TAG content CLOSE_TAG  */
-#line 44 "practica2.y"
+  case 10: /* content: content OPEN_TAG content CLOSE_TAG  */
+#line 48 "practica2.y"
                                              {
 		if (strcmp((yyvsp[-2].string)+1, (yyvsp[0].string)+2) != 0){
 	        printf("\nSintaxis XML incorrecta. Error en línea %d: Encontrado: \"%s\" y se esperaba \"</%s\".\n", yylineno, (yyvsp[0].string), (yyvsp[-2].string)+1);
 			exit(1);
 		}
 	}
-#line 1119 "practica2.tab.c"
+#line 1128 "practica2.tab.c"
     break;
 
 
-#line 1123 "practica2.tab.c"
+#line 1132 "practica2.tab.c"
 
       default: break;
     }
@@ -1312,7 +1321,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 57 "practica2.y"
+#line 61 "practica2.y"
 
 
 int main(int argc, char *argv[]) {
