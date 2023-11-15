@@ -1,1 +1,21 @@
-Jose Manuel Amestoy Lopez
+Autor: Jose Manuel Amestoy Lopez    manuel.amestoy@udc.es
+
+Desarrollo:
+
+Este programa en C utiliza Flex para realizar un análisis léxico de un texto de entrada. Calcula estadísticas como el número total de caracteres, palabras en mayúsculas, minúsculas, numéricas y extrañas, así como el número de frases y el numero total de palabras. Las expresiones regulares identifican patrones en el texto, y las reglas de acción incrementan contadores y calculan totales. La salida del programa presenta un resumen de las estadísticas analizadas.
+
+Funcionamiento:
+
+El código de la práctica se encuentra en el archivo practica1.l, este archivo consiste de varias declaraciones para los tipos de palabras y las frases, tambien se compone de varias expresiones reguales que incrementan los contadores que usaremos para mostrar las estadisticas de nuestros ficheros de pruebas, finalmente en el main imprimo todas las estadisticas (numero de caracteres, palabras, frases, etc).
+
+Para ejecutar la práctica solo hay q ejecutar el comando make run en la carpeta en la que estén el fichero Makefile y practica1.l, además se dispone de varios ejemplos para probarla, para usarlos solo hay que cambiar el numero del archivo PRUEBA dentro del makefile, o ejecutar respectivamente make run1, make run2, make run3 o make run4.
+
+Peculiaridades:
+
+- Cada "." cuenta como una frase.
+
+- Las palabras con tildes se consideran palabras raras.
+
+- Hay un contador del numero total de palabras.
+
+- El contador de palabras raras se refiere a las palabras que no sean todas mayuculas, todas minusculas o compuestas de numeros.

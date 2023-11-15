@@ -18,8 +18,6 @@ extern int yylineno;
     char* string;
 }
 
-%right CONTENT
-
 %%
 
 start:
@@ -32,7 +30,10 @@ start:
 		return 0;}
 	| DECLARATION comment OPEN_TAG content CLOSE_TAG comment OPEN_TAG {
 		printf("\nSintaxis XML incorrecta. Falta el tag raiz.\n");
-		exit(3);}
+		exit(2);}
+	| comment OPEN_TAG content CLOSE_TAG comment YYEOF {
+		printf("\nSintaxis XML incorrecta. Falta la cabecera.\n");
+		exit(2);}
     | error {
         printf("\nSintaxis XML incorrecta. Falta la cabecera.\n");
         exit(3);}
@@ -61,7 +62,7 @@ content: data
 text: /* empty */%prec MINUS
 	 | CONTENT %prec PLUS {
 	    printf("\nSintaxis XML incorrecta. Error en línea %d: Texto fuera de los tags.\n", yylineno);
-		exit(3);
+		exit(4);
 	 }
 ;
 

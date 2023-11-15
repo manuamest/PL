@@ -1,0 +1,8 @@
+
+
+
+Este programa en C analiza un texto
+
+
+
+Y esto es una frase.

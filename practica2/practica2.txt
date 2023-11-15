@@ -1,5 +1,7 @@
 Autor: Jose Manuel Amestoy Lopez    manuel.amestoy@udc.es
 
+Desarrollo
+
 Lexer (practica2.l):
 
 Define patrones para identificar tokens como comentarios, declaraciones, etiquetas de apertura, etiquetas de cierre y contenido.
@@ -8,14 +10,23 @@ Utiliza expresiones regulares para reconocer las estructuras básicas de un arch
 Parser (practica2.y):
 
 Define reglas gramaticales para la estructura básica de un archivo XML, utiliza el tokenization proporcionado por el lexer para construir el árbol de análisis sintáctico.
-Implementa reglas semánticas para verificar la coherencia de las etiquetas de apertura y cierre.
+Implementa reglas semánticas para verificar la coherencia de las etiquetas de apertura y cierre, de la presencia de la cabecera y del lugar en el que se encuentra el texto.
 
 Funcionamiento:
 
-El programa comienza leyendo un archivo XML, a continuacion el analizador léxico (Flex) identifica los tokens según las reglas definidas en practica2.l, el analizador sintáctico (Bison) utiliza las reglas gramaticales de practica2.y para verificar la estructura sintáctica del archivo XML y se realizan comprobaciones semánticas para garantizar que las etiquetas de apertura y cierre coincidan, finalmente se imprimen mensajes de error si se encuentran problemas de sintaxis o coherencia, en caso contrario se imprime un mensaje de sintaxis XML correcta.
+El código de la práctica se encuentra en los archivos practica2.l y practica2.y.
+
+Para ejecutar la práctica solo hay q ejecutar el comando make run en la carpeta en la que estén el fichero Makefile, practica2.l y practica2.y, además se dispone de varios ejemplos para probarla, para usarlos solo hay que cambiar el numero del archivo PRUEBA dentro del makefile, o ejecutar respectivamente make run1, make run2, make run3 o make run4 o make run5.
 
 El programa maneja errores sintácticos e informa sobre la línea y el tipo de error encontrado.
 
-Uso:
+Peculiaridades:
 
-El programa viene acompañado de un makefile que nos permite ejecutar el analizador con: make all
+El programa puede encontrar los siguientes errores:
+- Error de coherencia en etiquetas
+- Error de falta de etiqueta de cierre
+- Error de falta de la linea de la cabecera
+- Error de falta de etiqueta raiz
+- Error de texto fuera de tags
+
+Para el caso del error de texto fuera de tags hago uso de left y prec, esto me ayuda a evitar el conflicto de desplazamiento/reduccion pues en la regla en la que determino si comprobar si hay texto fuera de los tags o no le doy prioridad siempre al camino de escoger este texto.
