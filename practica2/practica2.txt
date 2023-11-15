@@ -11,9 +11,11 @@ Define reglas gramaticales para la estructura básica de un archivo XML, utiliza
 Implementa reglas semánticas para verificar la coherencia de las etiquetas de apertura y cierre.
 
 Funcionamiento:
+
 El programa comienza leyendo un archivo XML, a continuacion el analizador léxico (Flex) identifica los tokens según las reglas definidas en practica2.l, el analizador sintáctico (Bison) utiliza las reglas gramaticales de practica2.y para verificar la estructura sintáctica del archivo XML y se realizan comprobaciones semánticas para garantizar que las etiquetas de apertura y cierre coincidan, finalmente se imprimen mensajes de error si se encuentran problemas de sintaxis o coherencia, en caso contrario se imprime un mensaje de sintaxis XML correcta.
 
 El programa maneja errores sintácticos e informa sobre la línea y el tipo de error encontrado.
 
 Uso:
+
 El programa viene acompañado de un makefile que nos permite ejecutar el analizador con: make all

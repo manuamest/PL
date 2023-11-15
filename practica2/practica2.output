@@ -1,0 +1,356 @@
+Gramática
+
+    0 $accept: start $end
+
+    1 start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment $end
+    2      | DECLARATION comment OPEN_TAG content CLOSE_TAG comment OPEN_TAG
+    3      | error
+
+    4 comment: ε
+    5        | COMMENT
+
+    6 content: data
+    7        | content data
+    8        | OPEN_TAG content CLOSE_TAG text
+    9        | content OPEN_TAG content CLOSE_TAG text
+
+   10 text: ε
+   11     | CONTENT
+
+   12 data: OPEN_TAG CLOSE_TAG
+   13     | CONTENT
+   14     | COMMENT
+
+
+Terminales con las reglas donde aparecen
+
+    $end (0) 0 1
+    error (256) 3
+    OPEN_TAG <string> (258) 1 2 8 9 12
+    CLOSE_TAG <string> (259) 1 2 8 9 12
+    COMMENT <string> (260) 5 14
+    DECLARATION <string> (261) 1 2
+    CONTENT <string> (262) 11 13
+    PLUS (263)
+    MINUS (264)
+
+
+No terminales con las reglas donde aparecen
+
+    $accept (10)
+        on left: 0
+    start (11)
+        on left: 1 2 3
+        on right: 0
+    comment (12)
+        on left: 4 5
+        on right: 1 2
+    content (13)
+        on left: 6 7 8 9
+        on right: 1 2 7 8 9
+    text (14)
+        on left: 10 11
+        on right: 8 9
+    data (15)
+        on left: 12 13 14
+        on right: 6 7
+
+
+Estado 0
+
+    0 $accept: • start $end
+    1 start: • DECLARATION comment OPEN_TAG content CLOSE_TAG comment $end
+    2      | • DECLARATION comment OPEN_TAG content CLOSE_TAG comment OPEN_TAG
+    3      | • error
+
+    error        desplazar e ir al estado 1
+    DECLARATION  desplazar e ir al estado 2
+
+    start  ir al estado 3
+
+
+Estado 1
+
+    3 start: error •
+
+    $default  reduce usando la regla 3 (start)
+
+
+Estado 2
+
+    1 start: DECLARATION • comment OPEN_TAG content CLOSE_TAG comment $end
+    2      | DECLARATION • comment OPEN_TAG content CLOSE_TAG comment OPEN_TAG
+    4 comment: ε •  [OPEN_TAG]
+    5        | • COMMENT
+
+    COMMENT  desplazar e ir al estado 4
+
+    $default  reduce usando la regla 4 (comment)
+
+    comment  ir al estado 5
+
+
+Estado 3
+
+    0 $accept: start • $end
+
+    $end  desplazar e ir al estado 6
+
+
+Estado 4
+
+    5 comment: COMMENT •
+
+    $default  reduce usando la regla 5 (comment)
+
+
+Estado 5
+
+    1 start: DECLARATION comment • OPEN_TAG content CLOSE_TAG comment $end
+    2      | DECLARATION comment • OPEN_TAG content CLOSE_TAG comment OPEN_TAG
+
+    OPEN_TAG  desplazar e ir al estado 7
+
+
+Estado 6
+
+    0 $accept: start $end •
+
+    $default  aceptar
+
+
+Estado 7
+
+    1 start: DECLARATION comment OPEN_TAG • content CLOSE_TAG comment $end
+    2      | DECLARATION comment OPEN_TAG • content CLOSE_TAG comment OPEN_TAG
+    6 content: • data
+    7        | • content data
+    8        | • OPEN_TAG content CLOSE_TAG text
+    9        | • content OPEN_TAG content CLOSE_TAG text
+   12 data: • OPEN_TAG CLOSE_TAG
+   13     | • CONTENT
+   14     | • COMMENT
+
+    OPEN_TAG  desplazar e ir al estado 8
+    COMMENT   desplazar e ir al estado 9
+    CONTENT   desplazar e ir al estado 10
+
+    content  ir al estado 11
+    data     ir al estado 12
+
+
+Estado 8
+
+    6 content: • data
+    7        | • content data
+    8        | • OPEN_TAG content CLOSE_TAG text
+    8        | OPEN_TAG • content CLOSE_TAG text
+    9        | • content OPEN_TAG content CLOSE_TAG text
+   12 data: • OPEN_TAG CLOSE_TAG
+   12     | OPEN_TAG • CLOSE_TAG
+   13     | • CONTENT
+   14     | • COMMENT
+
+    OPEN_TAG   desplazar e ir al estado 8
+    CLOSE_TAG  desplazar e ir al estado 13
+    COMMENT    desplazar e ir al estado 9
+    CONTENT    desplazar e ir al estado 10
+
+    content  ir al estado 14
+    data     ir al estado 12
+
+
+Estado 9
+
+   14 data: COMMENT •
+
+    $default  reduce usando la regla 14 (data)
+
+
+Estado 10
+
+   13 data: CONTENT •
+
+    $default  reduce usando la regla 13 (data)
+
+
+Estado 11
+
+    1 start: DECLARATION comment OPEN_TAG content • CLOSE_TAG comment $end
+    2      | DECLARATION comment OPEN_TAG content • CLOSE_TAG comment OPEN_TAG
+    7 content: content • data
+    9        | content • OPEN_TAG content CLOSE_TAG text
+   12 data: • OPEN_TAG CLOSE_TAG
+   13     | • CONTENT
+   14     | • COMMENT
+
+    OPEN_TAG   desplazar e ir al estado 15
+    CLOSE_TAG  desplazar e ir al estado 16
+    COMMENT    desplazar e ir al estado 9
+    CONTENT    desplazar e ir al estado 10
+
+    data  ir al estado 17
+
+
+Estado 12
+
+    6 content: data •
+
+    $default  reduce usando la regla 6 (content)
+
+
+Estado 13
+
+   12 data: OPEN_TAG CLOSE_TAG •
+
+    $default  reduce usando la regla 12 (data)
+
+
+Estado 14
+
+    7 content: content • data
+    8        | OPEN_TAG content • CLOSE_TAG text
+    9        | content • OPEN_TAG content CLOSE_TAG text
+   12 data: • OPEN_TAG CLOSE_TAG
+   13     | • CONTENT
+   14     | • COMMENT
+
+    OPEN_TAG   desplazar e ir al estado 15
+    CLOSE_TAG  desplazar e ir al estado 18
+    COMMENT    desplazar e ir al estado 9
+    CONTENT    desplazar e ir al estado 10
+
+    data  ir al estado 17
+
+
+Estado 15
+
+    6 content: • data
+    7        | • content data
+    8        | • OPEN_TAG content CLOSE_TAG text
+    9        | • content OPEN_TAG content CLOSE_TAG text
+    9        | content OPEN_TAG • content CLOSE_TAG text
+   12 data: • OPEN_TAG CLOSE_TAG
+   12     | OPEN_TAG • CLOSE_TAG
+   13     | • CONTENT
+   14     | • COMMENT
+
+    OPEN_TAG   desplazar e ir al estado 8
+    CLOSE_TAG  desplazar e ir al estado 13
+    COMMENT    desplazar e ir al estado 9
+    CONTENT    desplazar e ir al estado 10
+
+    content  ir al estado 19
+    data     ir al estado 12
+
+
+Estado 16
+
+    1 start: DECLARATION comment OPEN_TAG content CLOSE_TAG • comment $end
+    2      | DECLARATION comment OPEN_TAG content CLOSE_TAG • comment OPEN_TAG
+    4 comment: ε •  [$end, OPEN_TAG]
+    5        | • COMMENT
+
+    COMMENT  desplazar e ir al estado 4
+
+    $default  reduce usando la regla 4 (comment)
+
+    comment  ir al estado 20
+
+
+Estado 17
+
+    7 content: content data •
+
+    $default  reduce usando la regla 7 (content)
+
+
+Estado 18
+
+    8 content: OPEN_TAG content CLOSE_TAG • text
+   10 text: ε •  [OPEN_TAG, CLOSE_TAG, COMMENT]
+   11     | • CONTENT
+
+    CONTENT  desplazar e ir al estado 21
+
+    $default  reduce usando la regla 10 (text)
+
+    text  ir al estado 22
+
+    Conflict between rule 10 and token CONTENT resolved as shift (MINUS < CONTENT).
+
+
+Estado 19
+
+    7 content: content • data
+    9        | content • OPEN_TAG content CLOSE_TAG text
+    9        | content OPEN_TAG content • CLOSE_TAG text
+   12 data: • OPEN_TAG CLOSE_TAG
+   13     | • CONTENT
+   14     | • COMMENT
+
+    OPEN_TAG   desplazar e ir al estado 15
+    CLOSE_TAG  desplazar e ir al estado 23
+    COMMENT    desplazar e ir al estado 9
+    CONTENT    desplazar e ir al estado 10
+
+    data  ir al estado 17
+
+
+Estado 20
+
+    1 start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment • $end
+    2      | DECLARATION comment OPEN_TAG content CLOSE_TAG comment • OPEN_TAG
+
+    $end      desplazar e ir al estado 24
+    OPEN_TAG  desplazar e ir al estado 25
+
+
+Estado 21
+
+   11 text: CONTENT •
+
+    $default  reduce usando la regla 11 (text)
+
+
+Estado 22
+
+    8 content: OPEN_TAG content CLOSE_TAG text •
+
+    $default  reduce usando la regla 8 (content)
+
+
+Estado 23
+
+    9 content: content OPEN_TAG content CLOSE_TAG • text
+   10 text: ε •  [OPEN_TAG, CLOSE_TAG, COMMENT]
+   11     | • CONTENT
+
+    CONTENT  desplazar e ir al estado 21
+
+    $default  reduce usando la regla 10 (text)
+
+    text  ir al estado 26
+
+    Conflict between rule 10 and token CONTENT resolved as shift (MINUS < CONTENT).
+
+
+Estado 24
+
+    1 start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment $end •
+
+    $default  reduce usando la regla 1 (start)
+
+
+Estado 25
+
+    2 start: DECLARATION comment OPEN_TAG content CLOSE_TAG comment OPEN_TAG •
+
+    $default  reduce usando la regla 2 (start)
+
+
+Estado 26
+
+    9 content: content OPEN_TAG content CLOSE_TAG text •
+
+    $default  reduce usando la regla 9 (content)

@@ -58,7 +58,9 @@ extern int yydebug;
     CLOSE_TAG = 259,               /* CLOSE_TAG  */
     COMMENT = 260,                 /* COMMENT  */
     DECLARATION = 261,             /* DECLARATION  */
-    CONTENT = 262                  /* CONTENT  */
+    CONTENT = 262,                 /* CONTENT  */
+    PLUS = 263,                    /* PLUS  */
+    MINUS = 264                    /* MINUS  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -72,16 +74,18 @@ extern int yydebug;
 #define COMMENT 260
 #define DECLARATION 261
 #define CONTENT 262
+#define PLUS 263
+#define MINUS 264
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 14 "practica2.y"
+#line 17 "practica2.y"
 
     char* string;
 
-#line 85 "practica2.tab.h"
+#line 89 "practica2.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
